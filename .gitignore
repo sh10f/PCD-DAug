@@ -1,3 +1,5 @@
 *.pt
 *.csv
 *.xlsx
+event.out.*
+__pycache__
