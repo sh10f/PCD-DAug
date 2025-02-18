@@ -117,7 +117,7 @@ class ConDiffusionSynData(ProcessedData):
         dataset_length = len(self.feature_df)
         t_batch_size = get_batch_size(dataset_length)
         
-        self.launch(epoch=100, batch_size=t_batch_size,
+        self.launch(epoch=1000, batch_size=t_batch_size,
                     img_num=len(self.feature_df), img_size=(1, len(self.feature_df.iloc[0])),
                     device=device, lr=1e-3)
 

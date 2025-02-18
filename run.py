@@ -13,14 +13,14 @@ def main():
     project_dir = os.path.dirname(__file__)
     print(project_dir)
 
-    # 设置随机种子
-    seed = 2024
-    torch.manual_seed(seed)
-    torch.cuda.manual_seed(seed)
-    torch.backends.cudnn.deterministic = True
-    torch.backends.cudnn.benchmark = False
-    random.seed(seed)
-    np.random.seed(seed)
+    # # 设置随机种子
+    # seed = 2024
+    # torch.manual_seed(seed)
+    # torch.cuda.manual_seed(seed)
+    # torch.backends.cudnn.deterministic = True
+    # torch.backends.cudnn.benchmark = False
+    # random.seed(seed)
+    # np.random.seed(seed)
 
     sys.argv = ["run.py", "-d", "d4j_new", "-p", "Lang", "-i", "3", "-m",  "dstar,ochiai,barinel,MLP-FL,CNN-FL,RNN-FL", "-e", "fs_ddpm", "-cp", "0.7", "-ep", "0.7"]
     # sys.argv = ["run.py", "-d", "SIR", "-p", "space", "-i", "1", "-m",  "dstar,ochiai,barinel,MLP-FL,CNN-FL,RNN-FL", "-e", "fs_ddpm", "-cp", "0.7", "-ep", "0.7"] 
@@ -45,22 +45,21 @@ def main():
             "space":[ 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38]
             }
 
-    methods = [ "MLP-FL,CNN-FL,RNN-FL", "dstar,ochiai,barinel",]
-    # methods = ["dstar,ochiai,barinel,MLP-FL,CNN-FL,RNN-FL"]
+    # methods = [ "MLP-FL,CNN-FL,RNN-FL", "dstar,ochiai,barinel",]
+    methods = ["dstar,ochiai,barinel,MLP-FL,CNN-FL,RNN-FL"]
     for p in all_p:
         sys.argv[4] = p
-        for t_method in methods:
-            sys.argv[8] = t_method
-            for i in all_i[p]:
-                for e in ["fs_ddpm"]:   # adjust
-                # for e in ["origin","resampling","undersampling"]:
-                    sys.argv[6] = str(i)
-                    sys.argv[10] = e
-                    print("test: " + sys.argv[4] + "-" + sys.argv[6] + "-" + sys.argv[10])
-                    configs = parse_args(sys.argv)   # 返回一个 参数字典
-                    pl = Pipeline(project_dir, configs)
-                    pl.run()
-                    print()
+        sys.argv[8] = methods[0]
+        for i in all_i[p]:
+            for e in ["fs_ddpm"]:   # adjust
+            # for e in ["origin","resampling","undersampling"]:
+                sys.argv[6] = str(i)
+                sys.argv[10] = e
+                print("test: " + sys.argv[4] + "-" + sys.argv[6] + "-" + sys.argv[10])
+                configs = parse_args(sys.argv)   # 返回一个 参数字典
+                pl = Pipeline(project_dir, configs)
+                pl.run()
+                print()
 
 
 if __name__ == "__main__":

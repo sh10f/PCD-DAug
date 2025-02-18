@@ -31,7 +31,7 @@ class DynamicSliceData(ProcessedData):
             pca_index = self.process_pca()
 
             sliced_Len = len(select_index)
-            inter_index = np.intersect1d(select_index, pca_index[:sliced_Len//4 + 4])
+            inter_index = np.intersect1d(select_index, pca_index[:sliced_Len//2 + 4])
 
             req_shape = 4
 
