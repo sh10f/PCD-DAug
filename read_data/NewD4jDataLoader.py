@@ -23,7 +23,7 @@ class NewD4jDataLoader(DataLoader):
 
 
     def load(self):
-        self.temp_path = "/home/zhangxiaohong/yangjunzhe/temp_F/datasets"
+        self.temp_path = "../datasets"
 
         self.file_dir = os.path.join(self.temp_path,
                                      "d4j",
@@ -33,6 +33,7 @@ class NewD4jDataLoader(DataLoader):
                                      )
                                      # "gzoltars",
                                      # self.program, str(self.bug_id)) # 再往下就是 log.txt,matrix.txt 那一层了
+        self.file_dir = os.path.normpath(self.file_dir)
         self._load_columns()   # 加载statement对应的行号，这个行号是matrix中的columns
         self._load_features()  #
         self._load_fault_line()

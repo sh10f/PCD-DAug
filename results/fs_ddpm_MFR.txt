@@ -1916,3 +1916,9 @@ Lang-17		15	2	6
 Lang-18		76	77	72	
 Lang-19		3	2	5	
 Lang-20		12	1	13	
+Lang-1		8	4	14	
+Lang-2		6	6	12	
+Lang-1		8	4	14	
+Lang-1		8	4	14	
+Lang-1		8	4	14	
+Lang-1		8	4	14	

@@ -31,7 +31,7 @@ class Pipeline:
 
         # 直接给dataset的相对位置 -- d4j所在的文件夹
         # self.project_dir = r"D:\university_study\科研\Diffusion_Model"
-        self.project_dir = "/home/zhangxiaohong/yangjunzhe/temp_F/datasets/"
+        self.project_dir = "../../datasets"
 
         self.dataset = configs["-d"]
         self.program = configs["-p"]
@@ -159,6 +159,6 @@ class Pipeline:
 
         print("feature shape after [Data Augmentation]: ", self.data_obj.feature_df.shape)
         # save_rank_path = os.path.join(self.project_dir, "results")
-        save_rank_path = r"/home/zhangxiaohong/yangjunzhe/temp_F/Code_FL/results"
+        save_rank_path = r"./results"
         cc = CalculateSuspiciousness(self.data_obj, self.method, save_rank_path, self.experiment)
         cc.run()

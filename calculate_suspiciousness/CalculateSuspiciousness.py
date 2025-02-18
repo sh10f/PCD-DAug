@@ -35,7 +35,14 @@ class CalculateSuspiciousness():
         self.rank_MAR_dict = self.__calc_MAR_rank(all_df_dict, self.data_obj.fault_line, self.method)
 
     def _save_rank(self):
+        # 获取当前工作目录
+        # current_dir = os.getcwd()
+        # print(f"Current working directory: {current_dir}")
+
         save_rank_filename = os.path.join(self.sava_rank_path, f"{self.state}_MFR.txt")
+        # print("tt ", os.path.abspath(save_rank_filename))
+        save_rank_filename = os.path.normpath(save_rank_filename)
+
         write_rank_to_txt(self.rank_MFR_dict, save_rank_filename, self.data_obj.program, self.data_obj.bug_id)
 
         save_rank_filename = os.path.join(self.sava_rank_path, f"{self.state}_MAR.txt")

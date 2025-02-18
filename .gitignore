@@ -3,3 +3,4 @@
 *.xlsx
 event.out.*
 __pycache__
+*.idea

@@ -112,12 +112,12 @@ class ConDiffusionSynData(ProcessedData):
         if self.diff_num < 1 or len(fail_feature) <= 0:
             return
 
-        device = torch.device("cuda:1" if torch.cuda.is_available() else "cpu")
+        device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
         
         dataset_length = len(self.feature_df)
         t_batch_size = get_batch_size(dataset_length)
         
-        self.launch(epoch=1000, batch_size=t_batch_size,
+        self.launch(epoch=100, batch_size=t_batch_size,
                     img_num=len(self.feature_df), img_size=(1, len(self.feature_df.iloc[0])),
                     device=device, lr=1e-3)
 
@@ -186,7 +186,7 @@ class ConDiffusionSynData(ProcessedData):
         # logger = SummaryWriter(os.path.join(r"D:\university_study\科研\slice\code\python\ICSEFLCode\ICSE2022FLCode-master\ConDiffusion\runs",
         #                                     self.program+"-"+self.bug_id))
 
-        logger = SummaryWriter(os.path.join(r"/home/zhangxiaohong/yangjunzhe/temp_F/Code_FL/ConDiffusion",
+        logger = SummaryWriter(os.path.join(r"../../ConDiffusion",
                                             "test"))
         # logger = SummaryWriter(os.path.join("runs", self.args.run_name))
         l = len(self.dataloader)
@@ -253,7 +253,7 @@ class ConDiffusionSynData(ProcessedData):
 
                 # save_images(sampled_images, os.path.join("results", self.args.run_name, f"{epoch}.jpg"))
                 # save_images(ema_sampled_images, os.path.join("results", self.args.run_name, f"{epoch}_ema.jpg"))
-                torch.save(temp_model, r"/home/zhangxiaohong/yangjunzhe/temp_F/Code_FL/data_process/data_systhesis/models/DDPM_conditional/ckpt.pt")
+                torch.save(temp_model, r"./models/DDPM_conditional/ckpt.pt")
                 # torch.save(ema_model.state_dict(), os.path.join("models", self.args.run_name, f"ema_ckpt.pt"))
                 # torch.save(optimizer.state_dict(), os.path.join("models", self.args.run_name, f"optim.pt"))
 
@@ -305,7 +305,7 @@ class ConDiffusionSynData(ProcessedData):
     def systhesis_multiple(self, sampled_num):
         model = UNet_conditional(num_classes=self.args.num_classes, img_size=self.args.image_size, device=self.args.device ).to(self.args.device )
         print("load from:/home/fushihao/diffusion/Code_FL/data_process/data_systhesis/models/DDPM_conditional/ckpt.pt ") 
-        model.load_state_dict(torch.load(r"/home/zhangxiaohong/yangjunzhe/temp_F/Code_FL/data_process/data_systhesis/models/DDPM_conditional/ckpt.pt"))
+        model.load_state_dict(torch.load(r"./models/DDPM_conditional/ckpt.pt"))
         # model.load_state_dict(torch.load(os.path.join(
         #     r"D:\university_study\科研\slice\code\python\ICSE2022FLCode\ICSE2022FLCode-master\ConDiffusion\models",
         #     "DDPM_conditional", "ckpt.pt")))
