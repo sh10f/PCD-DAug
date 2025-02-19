@@ -142,12 +142,13 @@ class Pipeline:
             self.data_obj = DynamicSliceData(self.dataloader)
 
             if "MLP-FL" not in self.method and "CNN-FL" not in self.method and "RNN-FL" not in self.method:
-                self.data_obj.process()   # 进行 PCA 降维
+                self.data_obj.process(mode="intersection")   # 进行 PCA 降维
             else:
-                self.data_obj.process(True)
-            self.data_obj = ConDiffusionSynData(self.data_obj)
-            self.data_obj.process()     # 依然是self.data_df   feature_df    label_df
+                self.data_obj.process(True, mode="intersection")
 
+            # self.data_obj = ConDiffusionSynData(self.data_obj)
+            # self.data_obj.process()     # 依然是self.data_df   feature_df    label_df
+            # =============================================================================
             # print("synthesis shape: ", self.data_obj.data_df)
 
             # cp = float(self.configs["-cp"])

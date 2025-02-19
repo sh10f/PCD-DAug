@@ -11,7 +11,7 @@ class DynamicSliceData(ProcessedData):
         super().__init__(raw_data)
         self.rest_columns = []
 
-    def process(self, hasShape=False):
+    def process(self, hasShape=False, mode="intersection"):
         if len(self.label_df) > 1:
             equal_zero_index = (self.label_df != 1).values
             equal_one_index = ~equal_zero_index
@@ -31,7 +31,16 @@ class DynamicSliceData(ProcessedData):
             pca_index = self.process_pca()
 
             sliced_Len = len(select_index)
-            inter_index = np.intersect1d(select_index, pca_index[:sliced_Len//2 + 4])
+            inter_index = []
+            if mode == "intersection":
+                print("intersect Test")
+                inter_index = np.intersect1d(select_index, pca_index[:sliced_Len//2 + 4])
+            elif mode == "slice":
+                print("Slice Test")
+                inter_index = select_index
+            elif mode == "pca":
+                print("PCA Test")
+                inter_index = pca_index[:sliced_Len]
 
             req_shape = 4
 

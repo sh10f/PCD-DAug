@@ -34,7 +34,7 @@ def main():
     for i in range(5, 26):
         chart_list.append(i)
     all_i ={"Lang": list(range(66))[1:],
-            "Chart": chart_list[24:],
+            "Chart": chart_list[1:],
             "Mockito": list(range(39))[27:],
             "Time": list(range(28))[1:],
             "Closure": list(range(134))[1:],
