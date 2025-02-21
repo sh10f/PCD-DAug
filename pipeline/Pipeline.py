@@ -146,6 +146,9 @@ class Pipeline:
             else:
                 self.data_obj.process(True, mode="intersection")
 
+            self.data_obj = SMOTEData(self.dataloader)
+            self.data_obj.process()
+
             # self.data_obj = ConDiffusionSynData(self.data_obj)
             # self.data_obj.process()     # 依然是self.data_df   feature_df    label_df
             # =============================================================================

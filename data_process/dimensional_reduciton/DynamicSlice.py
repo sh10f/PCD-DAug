@@ -34,7 +34,7 @@ class DynamicSliceData(ProcessedData):
             inter_index = []
             if mode == "intersection":
                 print("intersect Test")
-                inter_index = np.intersect1d(select_index, pca_index[:sliced_Len//2 + 4])
+                inter_index = np.intersect1d(select_index, pca_index[:sliced_Len + 4])
             elif mode == "slice":
                 print("Slice Test")
                 inter_index = select_index
