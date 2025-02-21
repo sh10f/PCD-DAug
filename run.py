@@ -25,7 +25,7 @@ def main():
     sys.argv = ["run.py", "-d", "d4j_new", "-p", "Lang", "-i", "3", "-m",  "dstar,ochiai,barinel,MLP-FL,CNN-FL,RNN-FL", "-e", "fs_ddpm", "-cp", "0.7", "-ep", "0.7"]
     # sys.argv = ["run.py", "-d", "SIR", "-p", "space", "-i", "1", "-m",  "dstar,ochiai,barinel,MLP-FL,CNN-FL,RNN-FL", "-e", "fs_ddpm", "-cp", "0.7", "-ep", "0.7"] 
 # all_p = ["Mockito","Time","Lang","Math","Chart" ]
-    all_p = ["Chart", "Math", "Time", "Mockito"]
+    all_p = ["Math", "Time", "Mockito"]
     # all_p = ["Mockito","Time","Lang","Math","Chart" ]
     # all_i ={"Lang": [6, 10, 17, 26, 32, 33, 38, 39, 42, 49, 60, 63, 64],
     #        "Mockito": [3,6,10,11,12,13,14,16,17,18,20,21,22,23,24,25,27,28,32,33,34,35,37]}
@@ -35,11 +35,11 @@ def main():
     for i in range(5, 26):
         chart_list.append(i)
     all_i ={"Lang": list(range(66))[1:],
-            "Chart": list(range(27))[5:26],
+            "Chart": list(range(27))[14:26],
             "Mockito": list(range(39))[1:],
             "Time": list(range(28))[1:],
             "Closure": list(range(134))[1:],
-            "Math": list(range(107))[1:],
+            "Math": list(range(107))[6:],
             "gzip": list(range(6))[4:],
             "python": list(range(5))[1:],
             "libtiff": list(range(8))[1:],
