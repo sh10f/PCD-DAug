@@ -39,7 +39,7 @@ def main():
             "Mockito": list(range(39))[1:],
             "Time": list(range(28))[1:],
             "Closure": list(range(134))[1:],
-            "Math": list(range(107))[6:],
+            "Math": list(range(107))[18:],
             "gzip": list(range(6))[4:],
             "python": list(range(5))[1:],
             "libtiff": list(range(8))[1:],
