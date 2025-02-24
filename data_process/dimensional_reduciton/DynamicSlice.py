@@ -23,10 +23,10 @@ class DynamicSliceData(ProcessedData):
                 for i in range(len(temp)):
                     if temp[i] == 1:
                         ex_index.append(i)
-
-            print(list(set(ex_index)))
+            print("Slice result: ", list(set(ex_index)))
 
             select_index = sorted(list(set(ex_index)))
+            print("Slice result: ", select_index, "\n", len(select_index))
             select_index = np.array(select_index)
             pca_index = self.process_pca()
 
@@ -34,7 +34,7 @@ class DynamicSliceData(ProcessedData):
             inter_index = []
             if mode == "intersection":
                 print("intersect Test")
-                inter_index = np.intersect1d(select_index, pca_index[:sliced_Len*2 + 4])
+                inter_index = np.intersect1d(select_index, pca_index[:sliced_Len])
             elif mode == "slice":
                 print("Slice Test")
                 inter_index = select_index
@@ -42,6 +42,7 @@ class DynamicSliceData(ProcessedData):
                 print("PCA Test")
                 inter_index = pca_index[:sliced_Len]
 
+            print("before Reshape: ", len(inter_index))
             req_shape = 4
 
             if hasShape:
@@ -49,8 +50,10 @@ class DynamicSliceData(ProcessedData):
 
             print("req_shape: ", req_shape)
             if len(inter_index) % req_shape != 0 or len(inter_index) == 0:
-                slice_diff = np.setdiff1d(select_index, inter_index)
-                pca_diff = np.setdiff1d(pca_index, inter_index)
+                # slice_diff = np.setdiff1d(select_index, inter_index)
+                slice_diff = np.array([x for x in select_index if x not in inter_index])
+                # pca_diff = np.setdiff1d(pca_index, inter_index)
+                pca_diff = np.array([x for x in pca_index if x not in inter_index])
 
                 len_slice_diff = len(slice_diff)
                 num_app = 0
@@ -61,7 +64,8 @@ class DynamicSliceData(ProcessedData):
                         inter_index = np.append(inter_index, temp)
                         num_app += 1
 
-                pca_diff = np.setdiff1d(pca_diff, inter_index)
+                # pca_diff = np.setdiff1d(pca_diff, inter_index)
+                pca_diff = np.array([x for x in pca_index if x not in inter_index])
                 for temp in pca_diff:
                     if len(inter_index) % req_shape == 0 and len(inter_index) != 0:
                         break
@@ -109,6 +113,7 @@ class DynamicSliceData(ProcessedData):
             covMatrix = self.feature_df.cov()  # 对CovMatrix求特征矩阵
 
             featValue, featVec = np.linalg.eig(covMatrix)
+            print("featValue: ", featValue.shape, featVec.shape)
             index = np.argsort(-featValue)  # 返回 元素值递减 的角标
             eigenvalue_num = math.trunc(len(self.feature_df.values[0]) * eigenvalue_percent)  # 根据 percent 阶段数量
             selected_values = featValue[index[:eigenvalue_num]]
