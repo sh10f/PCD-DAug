@@ -146,7 +146,7 @@ class Pipeline:
             else:
                 self.data_obj.process(True, mode="intersection")
 
-            self.data_obj = SMOTEData(self.dataloader)
+            self.data_obj = SMOTEData(self.data_obj)
             self.data_obj.process()
 
             # self.data_obj = ConDiffusionSynData(self.data_obj)
